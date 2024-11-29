@@ -103,8 +103,6 @@ print(perform_operation(10,2,4)) #
 
 
 
-
-
 # 10. Стратегия ставок
 def max_bets(money, initial_bet, max_bets):
     current_bet = initial_bet
@@ -115,8 +113,15 @@ def max_bets(money, initial_bet, max_bets):
         current_bet *= 2
         total_bets += 1
     return total_bets
-
 print(max_bets(10000,20,16))
+# 11. сраавнение
+def check_positive(num1, num2, num3):
+    negative_numbers = [num for num in [num1, num2, num3] if num <= 0]
+    if negative_numbers:
+        print(f"Следующие числа не положительные: {negative_numbers}")
+        return False
+    return True
+print(check_positive(1,2,-3))
 # 12. Возрастная категория 
 def get_age_category(age):
     if age < 1: return "Младенец"
