@@ -1,0 +1,191 @@
+#1
+number = float(input("Введите число: "))
+if number > 0:
+    print(1)
+else:
+    print(-1)
+#2
+num1 = float(input("Введите первое вещественное число: "))
+num2 = float(input("Введите второе вещественное число: "))
+max_number = max(num1, num2)
+print(f"Наибольшее число: {max_number}")
+#3
+numbers = []
+for i in range(4):
+    number = int(input(f"Введите целое число {i + 1}: "))
+    numbers.append(number)
+max_number = max(numbers)
+print(f"Максимальное число: {max_number}")
+
+
+################# индивидуалки
+
+import math
+# 1. Биквадратное уравнение
+def solve_biquadratic(a, b, c):
+    try:
+        delta = b**2 - 4*a*c
+        if delta < 0:
+            return "Действительных корней нет"
+        x2_1 = (-b + math.sqrt(delta)) / (2*a)
+        x2_2 = (-b - math.sqrt(delta)) / (2*a)
+        roots = []
+        if x2_1 >= 0:
+            roots.extend([math.sqrt(x2_1), -math.sqrt(x2_1)])
+        if x2_2 >= 0:
+            roots.extend([math.sqrt(x2_2), -math.sqrt(x2_2)])
+        return roots
+    except ValueError:
+        return "Ошибка: Некорректные входные данные"
+    except ZeroDivisionError:
+        return "Ошибка: Деление на ноль"
+print(solve_biquadratic(1, -5, 6)) 
+# 2. Проверка на четность
+def are_both_even(x, y):
+    return x % 2 == 0 and y % 2 == 0
+print(are_both_even(4, 6))
+# 3. Замена чисел
+def replace_numbers(x, y):
+    x, y = min(x, y), max(x, y)
+    x = (x + y) / 2
+    y = 2 * x * y 
+    return x, y
+print(replace_numbers(2, 5))  
+#4 сравнение 
+def print_numbers(x, y):
+    if x > y:
+        print(x)
+    else:
+        print(x, y)
+print_numbers(10,10) 
+# 5. Проверка прохождения кирпича
+def brick_fits(a, b, c, x, y):
+    dims = sorted([a, b, c])
+    return (dims[0] <= x and dims[1] <= y) or (dims[0] <= y and dims[1] <= x)
+print(brick_fits(2,3,4, 5,6))
+# 6. Время года
+def get_season(month):
+    if not 1 <= month <= 12:
+        return "Неверный номер месяца"
+    seasons = ["Зима", "Зима", "Весна", "Весна", "Весна", "Лето", "Лето", "Лето", "Осень", "Осень", "Осень", "Зима"]
+    return seasons[month - 1]
+print(get_season(12))
+# 7. Число дней в месяце
+import calendar
+def get_days_in_month(month, year):
+    try:
+        return calendar.monthrange(year, month)[1]
+    except ValueError:
+        return "Неверный месяц или год"
+print(get_days_in_month(2,2024))
+# 8. Проверка на нечетность
+def only_one_odd(x, y):
+    return (x % 2 != 0 and y % 2 == 0) or (x % 2 == 0 and y % 2 != 0)
+print(perform_operation(10,2,4))
+# 9. Арифметическая операция
+def perform_operation(num1, num2, operation):
+    try:
+        if operation == 1:
+            return num1 + num2
+        elif operation == 2:
+            return num1 * num2
+        elif operation == 3:
+            return num1 - num2
+        elif operation == 4:
+            if num2 == 0:
+                return "Деление на ноль!"
+            return num1 / num2
+        else:
+            return "Неверная операция"
+    except TypeError:
+        return "Ошибка: Неверный тип данных"
+print(perform_operation(10,2,4)) #
+
+
+
+
+
+# 10. Стратегия ставок
+def max_bets(money, initial_bet, max_bets):
+    current_bet = initial_bet
+    total_bets = 0
+    total_spent = 0
+    while total_spent + current_bet <= money and total_bets < max_bets:
+        total_spent += current_bet
+        current_bet *= 2
+        total_bets += 1
+    return total_bets
+
+print(max_bets(10000,20,16))
+# 12. Возрастная категория 
+def get_age_category(age):
+    if age < 1: return "Младенец"
+    if age < 7: return "Дошкольник"
+    if age < 18: return "Юноша"
+    if age < 30: return "Молодой человек"
+    if age < 60: return "В расцвете сил"
+    if age < 75: return "Пожилой человек"
+    return "Старый и немощный"
+print(get_age_category(12))
+
+# 13. Подъем или спуск
+def uphill_or_downhill(x1, y1, x2, y2):
+    if y1 == y2: return "Ровная дорога"
+    return "Подъем" if y2 > y1 else "Спуск"
+
+print(uphill_or_downhill(1,1,2,2)) 
+
+
+
+# 14. Название карты
+def get_card_name(rank, suit):
+    ranks = {11: "Валет", 12: "Дама", 13: "Король", 14: "Туз"}
+    suits = {1: "бубен", 2: "треф", 3: "червей", 4: "пик"}
+    if 6 <= rank <= 14 and 1 <= suit <= 4:
+        return f"{ranks.get(rank, str(rank))} {suits[suit]}"
+    return "Неверные данные"
+print(get_card_name(12, 2))
+
+
+# 15. Восточный календарь 
+def get_eastern_year(year):
+    animals = ["Крыса", "Корова", "Тигр", "Заяц", "Дракон", "Змея", "Лошадь", "Овца", "Обезьяна", "Курица", "Собака", "Свинья"]
+    colors = ["Зеленый", "Красный", "Желтый", "Белый", "Черный"]
+    year_in_cycle = (year - 1984) % 60
+    animal_index = year_in_cycle % 12
+    color_index = (year_in_cycle // 12) % 5
+    return f"Год {colors[color_index]} {animals[animal_index]}"
+print(get_eastern_year(2003)) 
+
+
+# 16. Словесное описание числа (упрощенная версия)
+def describe_number(number):
+    if not 100 <= number <= 999:
+        return "Не трехзначное число"
+    hundreds = ["", "Сто", "Двести", "Триста", "Четыреста", "Пятьсот", "Шестьсот", "Семьсот", "Восемьсот", "Девятьсот"]
+    tens = ["", "Десять", "Двадцать", "Тридцать", "Сорок", "Пятьдесят", "Шестьдесят", "Семьдесят", "Восемьдесят", "Девяносто"]
+    ones = ["", "Один", "Два", "Три", "Четыре", "Пять", "Шесть", "Семь", "Восемь", "Девять"]
+    h = number // 100
+    t = (number % 100) // 10
+    o = number % 10
+
+    description = hundreds[h]
+    if t == 1:
+        if o == 0: description += "Десять"
+        elif o == 1: description += "Одиннадцать"
+        elif o == 2: description += "Двенадцать"
+        elif o == 3: description += "Тринадцать"
+        elif o == 4: description += "Четырнадцать"
+        elif o == 5: description += "Пятнадцать"
+        elif o == 6: description += "Шестнадцать"
+        elif o == 7: description += "Семнадцать"
+        elif o == 8: description += "Восемнадцать"
+        elif o == 9: description += "Девятнадцать"
+
+    elif t > 1:
+        description += tens[t]
+        if o > 0: description += " " + ones[o]
+    elif o > 0:
+        description += ones[o]
+    return description.strip()
+print(describe_number(222))
