@@ -194,3 +194,159 @@ def describe_number(number):
         description += ones[o]
     return description.strip()
 print(describe_number(222))
+
+
+
+#############################3
+import random
+
+# 1
+def sum_to_100():
+    return sum(range(1, 101))
+print(sum_to_100())
+#2
+def factorial(a):
+    try:
+        a = int(a)  
+        if a < 0:
+            raise ValueError("Факториал определен только для неотрицательных чисел.")
+        result = 1
+        for i in range(1, a + 1):
+            result *= i
+        return result
+    except ValueError as e:
+        return f"Ошибка: {e}"
+    except TypeError:
+        return "Ошибка: Неверный тип данных. Введите целое число."
+print(factorial(5))
+
+# Задача 3
+def fibonacci_sequence(n):
+    try:
+        n = int(n)
+        if n <= 0:
+            return "Ошибка: Количество элементов должно быть больше 0."
+        a, b = 0, 1
+        result = []
+        for _ in range(n):
+            result.append(a)
+            a, b = b, a + b
+        return result
+    except ValueError as e:
+        return f"Ошибка: {e}"
+    except TypeError:
+        return "Ошибка: Неверный тип данных. Введите целое число."
+print(fibonacci_sequence(6))
+
+# 4
+def guess_number_game():
+    secret_number = random.randint(1, 100)
+    while True:
+        guess = input("Угадайте число (1-100) или введите 'exit': ")
+        if guess.lower() == 'exit':
+            break
+        try:
+            guess = int(guess)
+            if guess == secret_number:
+                print("Вы угадали!")
+                break
+            elif guess < secret_number:
+                print("Число больше.")
+            else:
+                print("Число меньше.")
+        except ValueError:
+            print("Ошибка: Введите число или 'exit'.")
+guess_number_game()
+#5
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+#6
+def guess_number_limited():
+    secret_number = random.randint(0, 100)
+    attempts_left = 10
+    while attempts_left > 0:
+        try:
+            guess = int(input(f"Угадайте число (0-100), осталось попыток: {attempts_left}: "))
+            if guess == secret_number:
+                print("Вы угадали!")
+                return
+            elif guess < secret_number:
+                print("Число больше.")
+            else:
+                print("Число меньше.")
+            attempts_left -= 1
+        except ValueError:
+            print("Ошибка: Введите целое число.")
+    print(f"Вы не угадали. Загаданное число было: {secret_number}")
+guess_number_limited()
+
+###############################4
+#1
+def replace_ends(text):
+    if not text:
+        return "!!"
+    if len(text) == 1:
+        return "!!"
+    return "!" + text[1:-1] + "!"
+print(replace_ends("hello"))
+#2 
+def analyze_word(word):
+    if not word:
+        return {"length": 0, "first": "", "last": ""}
+    return {
+        "length": len(word),
+        "first": word[0],
+        "last": word[-1]
+    }
+print(analyze_word("world"))
+
+#3
+def truncate_string(k, text):
+    try:
+        k = int(k)
+        if k <= 0:
+            return "Ошибка: k должно быть положительным числом."
+        if len(text) <= k:
+            return text, ""
+        excess = text[k:]
+        truncated = text[:k]
+        return truncated, excess
+    except ValueError:
+        return "Ошибка: k должно быть целым числом.", ""
+    except TypeError:
+        return "Ошибка: Неверный тип данных.", ""
+print(truncate_string(5, "abcdefghijk"))
+#4
+def extract_second_word(text):
+  try:
+    words = text.split()
+    if len(words) < 2:
+        return "Ошибка: Строка должна содержать хотя бы два слова."
+    return words[1]
+  except AttributeError:
+      return "Ошибка: Неверный тип данных."
+print(extract_second_word("Иван Петров"))
+
+
+#5
+def longest_word(text):
+  words = text.split()
+  if not words:
+      return ""
+  longest = max(words, key=len)
+  return longest
+print(longest_word("Это длинная строка с разными словами"))
+
+#6
+def count_case(text):
+    uppercase = sum(1 for c in text if c.isupper())
+    lowercase = sum(1 for c in text if c.islower())
+    return uppercase, lowercase
+print(count_case("AAAAaaaaAAAA"))
+
+
+
+
